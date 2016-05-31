@@ -177,7 +177,7 @@ public class Game {
 			pitSize--;
 		}
 
-		if (pitCurrent != -5 && pitCurrent != -11 && pits[pitCurrent].getStones() == 1) { // last pit was empty
+		if (pitCurrent != -5 && pitCurrent != -11 && pits[pitCurrent].getStones() == 1 && isOwnPit(pitCurrent)) { // last pit was empty
 
 			int bothSides = 1 + pits[11 - pitCurrent].getStones();
 
@@ -196,6 +196,18 @@ public class Game {
 
 		return this;
 
+	}
+	
+	private boolean isOwnPit(int pitCurrent){
+		if(playerTurn == PLAYER1_ID && pitCurrent >= 0 && pitCurrent < 6){
+			return true;
+		}else if(playerTurn == PLAYER2_ID && pitCurrent >= 6 && pitCurrent < 12){
+			return true;
+		}else{
+			return false;
+		}
+		
+		
 	}
 	
 	private void checkGameover(){
